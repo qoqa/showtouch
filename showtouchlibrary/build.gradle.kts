@@ -9,7 +9,7 @@ plugins {
     kotlin("kapt")
 }
 
-val versionNumber = "1.0"
+val versionNumber = "1.0.1"
 val fis = FileInputStream(rootProject.file("github.properties"))
 val githubProperties = Properties()
 
@@ -30,9 +30,6 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
-            isDebuggable = false
-            multiDexEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -58,7 +55,7 @@ publishing {
                 groupId = "com.qoqa"
                 artifactId = "showtouch"
                 version = versionNumber
-                artifact("$buildDir/outputs/aar/lib-release.aar")
+                artifact("$buildDir/outputs/aar/showtouchlibrary-release.aar")
             }
         }
     }
