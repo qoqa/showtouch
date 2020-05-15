@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/*
+!/.idea/codeStyles/
+.DS_Store
+/build
+/captures
+build-cache/
+/app/proguard-final.txt
+lint-report.html
+keystore.properties
+/app/beta/
+/app/release/
+*.keystore

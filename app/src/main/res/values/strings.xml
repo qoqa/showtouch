@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ShowTouch</string>
+    <string name="change_touch_indicator_size">Change touch indicator size</string>
+    <string name="change_disappear_delay">Change disappear delay</string>
+</resources>
