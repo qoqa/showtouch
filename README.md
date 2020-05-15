@@ -1,7 +1,7 @@
 # ShowTouch by QoQa - Android library
 
 This library allow user to add a layout that will show any click on the screen.
-The click is shown using a circle on which colour, size and disappapear delay can be customized.
+The click is shown using a circle on which color, size and disappear delay can be customized.
 
 ## Setup
 
