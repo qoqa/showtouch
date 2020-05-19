@@ -8,10 +8,8 @@ plugins {
     kotlin("kapt")
 }
 
-val versionNumber = "1.0.3"
-//val fis = FileInputStream(rootProject.file("github.properties"))
+val versionNumber = "1.0.5"
 val githubProperties = Properties()
-group = "com.github.qoqa"
 
 android {
     compileSdkVersion(29)
@@ -75,34 +73,6 @@ afterEvaluate {
         }
     }
 }
-
-/*publishing {
-    publications {
-        create<MavenPublication>("gpr") {
-            run {
-                groupId = "com.qoqa"
-                artifactId = "showtouch"
-                version = versionNumber
-                artifact("$buildDir/outputs/aar/showtouchlibrary-release.aar")
-            }
-        }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /** Configure path of your package repository on Github
-             *  Replace GITHUB_USERID with your/organisation Github userID and REPOSITORY with the repository name on GitHub
-             */
-            url = uri("https://maven.pkg.github.com/qoqa/showtouch") // Github Package
-            credentials {
-                githubProperties.load(fis)
-                //Fetch these details from the properties file or from Environment variables
-                username = githubProperties.getProperty("gpr.usr") as String? ?: System.getenv("GPR_USER")
-                password = githubProperties.getProperty("gpr.key") as String? ?: System.getenv("GPR_API_KEY")
-            }
-        }
-    }
-}*/
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra.get("kotlinVersion")}")
