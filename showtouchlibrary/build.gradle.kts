@@ -10,7 +10,7 @@ plugins {
 }
 
 val versionNumber = "1.0.1"
-val fis = FileInputStream(rootProject.file("github.properties"))
+//val fis = FileInputStream(rootProject.file("github.properties"))
 val githubProperties = Properties()
 
 android {
@@ -48,7 +48,7 @@ android {
     }
 }
 
-publishing {
+/*publishing {
     publications {
         create<MavenPublication>("gpr") {
             run {
@@ -74,7 +74,7 @@ publishing {
             }
         }
     }
-}
+}*/
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra.get("kotlinVersion")}")
