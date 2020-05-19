@@ -1,6 +1,5 @@
-import java.io.FileInputStream
-import java.util.*
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import java.util.*
 
 plugins {
     id("com.android.library")
@@ -9,13 +8,14 @@ plugins {
     kotlin("kapt")
 }
 
-val versionNumber = "1.0.1"
+val versionNumber = "1.0.3"
 //val fis = FileInputStream(rootProject.file("github.properties"))
 val githubProperties = Properties()
+group = "com.github.qoqa"
 
 android {
-    compileSdkVersion (29)
-    buildToolsVersion ("29.0.3")
+    compileSdkVersion(29)
+    buildToolsVersion("29.0.3")
 
     val libVersionCode = 1
 
@@ -30,7 +30,10 @@ android {
 
     buildTypes {
         getByName("release") {
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     kotlinOptions {
@@ -45,6 +48,31 @@ android {
                 println("output file name: $fileName")
                 output.outputFileName = fileName
             }
+    }
+}
+
+val sourcesJar = task<Jar>("androidSourcesJar") {
+    archiveClassifier.set("sources")
+    from(android.sourceSets["main"].java.srcDirs)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("android-showtouch") {
+                from(components["release"])
+
+                groupId = "com.qoqa"
+                artifactId = "android-showtouch"
+                version = versionNumber
+                artifact(sourcesJar)
+            }
+        }
+        repositories {
+            maven {
+                url = uri("$buildDir/repo")
+            }
+        }
     }
 }
 
@@ -78,9 +106,9 @@ android {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra.get("kotlinVersion")}")
-    implementation( "androidx.appcompat:appcompat:1.1.0")
-    implementation ("androidx.core:core-ktx:1.2.0")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.core:core-ktx:1.2.0")
     testImplementation("junit:junit:4.12")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.2.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }
